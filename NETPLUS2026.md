@@ -1,5 +1,5 @@
 
-<!-- Your monitor number = #$34T# -->
+<!-- Your monitor number = 62 -->
 
 
 ## ⛅ Warm Up for Day 4.
@@ -15,12 +15,12 @@ Verify:
 
 ~~~cmd
 @cmd
-ping 10.#$34T#.1.10             PC Network Adapter
-ping 10.#$34T#.1.2		    CoreTAAS
-ping 10.#$34T#.1.4		    CoreBABA
-ping 10.#$34T#.100.8		CUCM
-ping 10.#$34T#.#$34T#.1		EDGE - INSIDE
-ping 200.0.0.#$34T#		    EDGE - OUTSIDE
+ping 10.62.1.10             PC Network Adapter
+ping 10.62.1.2		    CoreTAAS
+ping 10.62.1.4		    CoreBABA
+ping 10.62.100.8		CUCM
+ping 10.62.62.1		EDGE - INSIDE
+ping 200.0.0.62		    EDGE - OUTSIDE
 
 ping 200.0.0.k		        Klassmate's EDGE	       k = klassmate's Monitor Number
 ping 10.k.100.8		        Klassmate's CUCM
@@ -34,8 +34,8 @@ Your Branch must be able to call other klassmates
 <br>
 
 View your cameras:
-  - http://10.#$34T#.50.6  
-  - http://10.#$34T#.50.8  
+  - http://10.62.50.6  
+  - http://10.62.50.8  
 
 
 <br>
@@ -1149,7 +1149,7 @@ conf t
  username admin privilege 15 secret pass
  aaa new-model
  radius server WINRAD
-  address ipv4 10.#$34T#.1.8 auth-port 1812 acct-port 1813
+  address ipv4 10.62.1.8 auth-port 1812 acct-port 1813
   key keykeymo
   exit
  aaa group server radius RADGROUP
@@ -1359,7 +1359,7 @@ ip -br link
 3. Modify Interface IP
 VMNet2:  192.168.102.6/24
 VMNet3:  10.11.11.100/27
-Bridged: 10.#$34T#.1.6/24
+Bridged: 10.62.1.6/24
 
 <br>
 
@@ -1367,7 +1367,7 @@ Bridged: 10.#$34T#.1.6/24
 !@NetOps-PH
 ifconfig ens192 192.168.102.6 netmask 255.255.255.0 up
 ifconfig ens224 10.11.11.100 netmask 255.255.255.224 up
-ifconfig ens256 10.#$34T#.1.6 netmask 255.255.255.0 up
+ifconfig ens256 10.62.1.6 netmask 255.255.255.0 up
 ~~~
 
 <br>
@@ -1418,13 +1418,13 @@ type ethernet \
 con-name BRIDGED \
 ifname ens256 \
 ipv4.method manual \
-ipv4.addresses 10.#$34T#.1.6/24 \
+ipv4.addresses 10.62.1.6/24 \
 autoconnect yes
 
 nmcli connection up BRIDGED
 
-ip route add 10.0.0.0/8 via 10.#$34T#.1.4 dev ens256
-ip route add 200.0.0.0/24 via 10.#$34T#.1.4 dev ens256
+ip route add 10.0.0.0/8 via 10.62.1.4 dev ens256
+ip route add 200.0.0.0/24 via 10.62.1.4 dev ens256
 ip route add 0.0.0.0/0 via 10.11.11.113 dev ens224
 ~~~
 
